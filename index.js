@@ -6,6 +6,8 @@ const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 import SamJs from './samjs.esm.js'
 const sam = new SamJs()
 
+const SPELLNAME = 'DARIA.AI' // this is the name of the spell in Magick
+
 const THREE = useThree();
 
 const Text = useText();
@@ -163,7 +165,8 @@ export default function (e) {
         const fontSize = 0.35;
         const anchorX = 'center';
         const anchorY = 'top';
-        const color = "#ff0000";
+        // pink
+        const color = "0xff00ff"
         textMesh = await getTextMesh(
           ' ',
           font,
@@ -175,7 +178,7 @@ export default function (e) {
         textGroup = new THREE.Group();
         textGroup.add(textMesh);
 
-        textMesh.position.set(0, .5, .4);
+        textMesh.position.set(0, 1, .4);
 
         textMesh.scale.set(0.25, 0.25, 0.25);
         textMesh.updateMatrixWorld(true);
@@ -188,7 +191,7 @@ export default function (e) {
       })
 
       // create 3d model
-      const u = `${baseUrl}HelperBot.glb`;
+      const u = `${baseUrl}metashima.glb`;
 
       let o = await new Promise((resolve, reject) => {
         gltfLoader.load(u, resolve, function onprogress() { }, reject);
@@ -225,7 +228,7 @@ export default function (e) {
           text: message,
           speaker: player,
           agent: app.name,
-          spellName: 'webaverse_ai_pet',
+          spellName: SPELLNAME,
           textMesh
         });
 
